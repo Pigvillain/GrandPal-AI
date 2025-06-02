@@ -3,5 +3,11 @@
     "api/translate.js": {
       "maxDuration": 10
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/ads.txt",
+      "destination": "/ads.txt"
+    }
+  ]
 }
