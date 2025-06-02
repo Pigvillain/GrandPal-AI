@@ -125,6 +125,41 @@ function updateUsageDisplay() {
 
 // Initialize all event listeners
 function initializeEventListeners() {
+    // Secret heart click for recharging uses
+    const secretHeart = document.getElementById('secret-heart');
+    if (secretHeart) {
+        let clickCount = 0;
+        let clickTimer = null;
+        
+        secretHeart.addEventListener('click', () => {
+            clickCount++;
+            
+            if (clickTimer) {
+                clearTimeout(clickTimer);
+            }
+            
+            clickTimer = setTimeout(() => {
+                if (clickCount >= 3) {
+                    // Triple click to recharge
+                    appState.dailyUses = FREE_DAILY_LIMIT;
+                    localStorage.setItem('dailyUses', appState.dailyUses);
+                    updateUsageDisplay();
+                    toastManager.show('🎉 Usage recharged! Secret activated!', 'success', 2000);
+                    
+                    // Add a little animation to the heart
+                    secretHeart.style.transform = 'scale(1.5)';
+                    setTimeout(() => {
+                        secretHeart.style.transform = 'scale(1)';
+                    }, 300);
+                }
+                clickCount = 0;
+            }, 500);
+        });
+        
+        // Add transition for smooth animation
+        secretHeart.style.transition = 'transform 0.3s ease';
+    }
+    
     // Translation
     const translateBtn = document.getElementById('translate-btn');
     if (!translateBtn) {
