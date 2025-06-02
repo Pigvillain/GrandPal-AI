@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate OG Image</title>
+</head>
+<body>
+    <h1>GrandPal AI OG Image Generator</h1>
+    <canvas id="canvas" width="1200" height="630"></canvas>
+    <br>
+    <button onclick="downloadImage()">Download OG Image</button>
+    
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Background gradient
+        const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
+        gradient.addColorStop(0, '#4A90E2');
+        gradient.addColorStop(1, '#357ABD');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 1200, 630);
+        
+        // White overlay box
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+        ctx.roundRect(100, 100, 1000, 430, 20);
+        ctx.fill();
+        
+        // Logo emoji
+        ctx.font = '120px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('👴💬👦', 600, 250);
+        
+        // Title
+        ctx.fillStyle = '#2C3E50';
+        ctx.font = 'bold 72px Arial';
+        ctx.fillText('GrandPal AI', 600, 350);
+        
+        // Subtitle
+        ctx.font = '36px Arial';
+        ctx.fillStyle = '#7F8C8D';
+        ctx.fillText('Bridge the Generation Gap', 600, 410);
+        
+        // Tagline
+        ctx.font = '28px Arial';
+        ctx.fillText('Understand Modern Slang & Internet Culture', 600, 470);
+        
+        function downloadImage() {
+            const link = document.createElement('a');
+            link.download = 'og-image.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+    </script>
+</body>
+</html>
