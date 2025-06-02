@@ -214,7 +214,7 @@ main {
 
 .translation-box {
     background: var(--bg-light);
-    padding: 1.5rem;
+    padding: 2rem;
     border-radius: 0.5rem;
     font-size: 1.1rem;
     line-height: 1.8;
@@ -250,7 +250,7 @@ main {
     background: var(--bg-white);
     border: 2px solid var(--border-color);
     border-radius: 0.5rem;
-    padding: 1.25rem;
+    padding: 1.5rem;
 }
 
 .context-box h4, .example-box h4 {
@@ -599,7 +599,18 @@ footer {
     }
     
     .context-box, .example-box {
-        padding: 1rem;
+        padding: 1.25rem;
+    }
+    
+    .translation-box {
+        padding: 1.5rem;
+    }
+    
+    /* Better list rendering on mobile */
+    .translation-content ul, .translation-content ol,
+    .info-content ul, .info-content ol {
+        margin-left: 1rem;
+        padding-left: 0.25rem;
     }
     
     .terms-grid {
@@ -979,29 +990,39 @@ button {
 }
 
 /* Markdown Content Styles */
-.markdown-content h1, .markdown-content h2, .markdown-content h3 {
+.markdown-content h1, .markdown-content h2, .markdown-content h3,
+.translation-content h1, .translation-content h2, .translation-content h3,
+.info-content h1, .info-content h2, .info-content h3 {
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
     font-weight: 600;
 }
 
-.markdown-content p {
+.markdown-content p, .translation-content p, .info-content p {
     margin-bottom: 1rem;
 }
 
-.markdown-content ul, .markdown-content ol {
+.markdown-content ul, .markdown-content ol,
+.translation-content ul, .translation-content ol,
+.info-content ul, .info-content ol {
     margin-left: 1.5rem;
     margin-bottom: 1rem;
+    padding-left: 0.5rem;
 }
 
-.markdown-content code {
+.markdown-content li, .translation-content li, .info-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.markdown-content code, .translation-content code, .info-content code {
     background: var(--bg-light);
     padding: 0.125rem 0.375rem;
     border-radius: 0.25rem;
     font-size: 0.9em;
 }
 
-.markdown-content blockquote {
+.markdown-content blockquote, .translation-content blockquote, .info-content blockquote {
     border-left: 4px solid var(--primary-color);
     padding-left: 1rem;
     margin: 1rem 0;
