@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrandPal AI - API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #357ABD;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+        .error {
+            background: #ffeeee;
+            color: #cc0000;
+        }
+        .success {
+            background: #eeffee;
+            color: #008800;
+        }
+    </style>
+</head>
+<body>
+    <h1>GrandPal AI - API Test Page</h1>
+    
+    <div class="test-section">
+        <h2>1. API Key Setup</h2>
+        <input type="text" id="api-key" placeholder="Enter your Gemini API key" value="AIzaSyC8_cxVoQJeVGFrC1iE_4Xoz_4jvipfPok">
+        <button onclick="saveApiKey()">Save API Key</button>
+        <div id="key-status"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Test Local Database</h2>
+        <input type="text" id="local-term" placeholder="Try: goat, cap, bet" value="goat">
+        <button onclick="testLocalDatabase()">Test Local Translation</button>
+        <div id="local-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Test Gemini API</h2>
+        <textarea id="api-input" placeholder="Enter text to translate" rows="3">no cap fr fr that slaps 🔥💯</textarea>
+        <button onclick="testGeminiAPI()">Test API Translation</button>
+        <div id="api-result" class="result"></div>
+    </div>
+
+    <script src="slang-database.js"></script>
+    <script>
+        // Load API key from localStorage
+        window.onload = () => {
+            const savedKey = localStorage.getItem('geminiApiKey');
+            if (savedKey) {
+                document.getElementById('api-key').value = savedKey;
+                document.getElementById('key-status').innerHTML = '<p class="success">API Key loaded from storage</p>';
+            }
+        };
+
+        function saveApiKey() {
+            const key = document.getElementById('api-key').value;
+            if (key) {
+                localStorage.setItem('geminiApiKey', key);
+                document.getElementById('key-status').innerHTML = '<p class="success">API Key saved!</p>';
+            } else {
+                document.getElementById('key-status').innerHTML = '<p class="error">Please enter an API key</p>';
+            }
+        }
+
+        function testLocalDatabase() {
+            const term = document.getElementById('local-term').value.toLowerCase();
+            const result = translateTerm(term);
+            
+            if (result) {
+                document.getElementById('local-result').innerHTML = `
+<strong>Found in database!</strong>
+Meaning: ${result.meaning}
+Context: ${result.context}
+Response: ${result.response}
+                `;
+                document.getElementById('local-result').className = 'result success';
+            } else {
+                document.getElementById('local-result').innerHTML = 'Term not found in local database';
+                document.getElementById('local-result').className = 'result error';
+            }
+        }
+
+        async function testGeminiAPI() {
+            const apiKey = document.getElementById('api-key').value;
+            const input = document.getElementById('api-input').value;
+            
+            if (!apiKey) {
+                document.getElementById('api-result').innerHTML = 'Please enter an API key first';
+                document.getElementById('api-result').className = 'result error';
+                return;
+            }
+
+            document.getElementById('api-result').innerHTML = 'Testing API...';
+            document.getElementById('api-result').className = 'result';
+
+            try {
+                const prompt = `You are helping a grandparent understand modern slang and internet culture. 
+Please explain this text in simple, friendly terms: "${input}"
+
+Provide:
+1. A clear translation/meaning
+2. Context about when/how it's used
+3. A suggestion for how they might respond
+
+Keep explanations simple and avoid using other slang terms.`;
+
+                console.log('Sending request to Gemini API...');
+                console.log('URL:', `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`);
+
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: prompt
+                            }]
+                        }]
+                    })
+                });
+
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`API request failed: ${response.status} - ${errorText}`);
+                }
+
+                const data = await response.json();
+                console.log('API Response:', data);
+                
+                const aiResponse = data.candidates[0].content.parts[0].text;
+                
+                document.getElementById('api-result').innerHTML = `
+<strong>API Response Success!</strong>
+
+${aiResponse}
+
+<hr>
+<small>Tokens used: ${data.usageMetadata.totalTokenCount}</small>
+                `;
+                document.getElementById('api-result').className = 'result success';
+                
+            } catch (error) {
+                console.error('API Error:', error);
+                document.getElementById('api-result').innerHTML = `
+<strong>Error:</strong>
+${error.message}
+
+Check the browser console for more details.
+                `;
+                document.getElementById('api-result').className = 'result error';
+            }
+        }
+    </script>
+</body>
+</html>

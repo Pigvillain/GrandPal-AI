@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrandPal AI - Bridge the Generation Gap</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">👴💬👦</span>
+                <h1>GrandPal AI</h1>
+            </div>
+            <div class="header-right">
+                <div class="usage-counter">
+                    <span id="daily-uses">5</span>/5 Free Today
+                </div>
+
+                <button class="premium-btn">Go Premium</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Top Banner Ad Space -->
+    <div class="ad-banner top-banner">
+        <div class="ad-placeholder">
+            <small>Advertisement</small>
+            <!-- Google AdSense 코드가 여기 들어감 -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Understand Your Grandkids Better!</h2>
+            <p>Decode modern slang, emojis, and internet culture with AI assistance</p>
+        </section>
+
+        <!-- Main Translation Interface -->
+        <section class="translator-section">
+            <div class="input-area">
+                <h3>What would you like to understand?</h3>
+                <textarea id="user-input" placeholder="Type or paste text here... For example: 'no cap fr fr that slaps 🔥💯'" rows="4"></textarea>
+                <div class="input-controls">
+                    <button id="voice-input" class="voice-btn" title="Voice Input">
+                        🎤 Speak
+                    </button>
+                    <button id="paste-btn" class="secondary-btn">
+                        📋 Paste from Clipboard
+                    </button>
+                </div>
+                <button id="translate-btn" class="primary-btn">
+                    Explain This To Me
+                </button>
+            </div>
+
+            <div id="result-area" class="result-area hidden">
+                <h3>Here's what it means:</h3>
+                <div id="translation-result" class="translation-box"></div>
+                
+                <div class="additional-info">
+                    <div class="context-box">
+                        <h4>📚 Context & Usage</h4>
+                        <p id="context-info"></p>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>💡 How to respond</h4>
+                        <p id="response-suggestion"></p>
+                    </div>
+                </div>
+
+                <button id="new-translation" class="secondary-btn">
+                    Try Another One
+                </button>
+            </div>
+        </section>
+
+        <!-- Popular Terms Section -->
+        <section class="popular-terms">
+            <h3>당장 확인해볼 수 있는 용어</h3>
+            <div class="terms-grid">
+                <div class="term-card" data-term="GOAT">
+                    <span class="term">GOAT 🐐</span>
+                    <span class="hint">Click to learn</span>
+                </div>
+                <div class="term-card" data-term="slay">
+                    <span class="term">slay 💅</span>
+                    <span class="hint">Click to learn</span>
+                </div>
+                <div class="term-card" data-term="bussin">
+                    <span class="term">bussin 🍽️</span>
+                    <span class="hint">Click to learn</span>
+                </div>
+                <div class="term-card" data-term="bet">
+                    <span class="term">bet ✅</span>
+                    <span class="hint">Click to learn</span>
+                </div>
+                <div class="term-card" data-term="sus">
+                    <span class="term">sus 🤔</span>
+                    <span class="hint">Click to learn</span>
+                </div>
+                <div class="term-card" data-term="cap">
+                    <span class="term">no cap 🧢</span>
+                    <span class="hint">Click to learn</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <h3>What GrandPal AI Can Help With</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">💬</span>
+                    <h4>Text Messages</h4>
+                    <p>Understand abbreviations and modern texting style</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">😊</span>
+                    <h4>Emojis</h4>
+                    <p>Learn what different emoji combinations mean</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📱</span>
+                    <h4>Social Media</h4>
+                    <p>Decode hashtags and social media trends</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎮</span>
+                    <h4>Gaming Terms</h4>
+                    <p>Understand what your grandkids say while gaming</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Sticky Bottom Banner Ad -->
+    <div class="ad-banner bottom-banner">
+        <div class="ad-placeholder">
+            <small>Advertisement</small>
+            <!-- Google AdSense 코드가 여기 들어감 -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <!-- Premium Modal -->
+    <div id="premium-modal" class="modal hidden">
+        <div class="modal-content premium-content">
+            <span class="close">&times;</span>
+            <h2>GrandPal AI Premium</h2>
+            <div class="price-tag">
+                <span class="price">$2.99</span>
+                <span class="period">/month</span>
+            </div>
+            <ul class="premium-features">
+                <li>✅ Unlimited translations</li>
+                <li>✅ No advertisements</li>
+                <li>✅ Faster translation speed</li>
+            </ul>
+            <button class="subscribe-btn">Start Free Trial</button>
+            <p class="trial-info">7-day free trial • Cancel anytime</p>
+        </div>
+    </div>
+
+    <!-- Out of Uses Modal -->
+    <div id="limit-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>You've used all your free translations today!</h3>
+            <p>Get more translations by:</p>
+            <div class="options">
+                <button id="premium-option" class="option-btn premium">
+                    ⭐ Go Premium
+                    <span class="option-detail">Unlimited translations for $2.99/month</span>
+                </button>
+            </div>
+            <p class="reset-info">Free uses reset at midnight EST</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 GrandPal AI • Made with ❤️ for grandparents everywhere</p>
+    </footer>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

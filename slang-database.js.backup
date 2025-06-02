@@ -1,0 +1,276 @@
+// Slang and Emoji Database for GrandPal AI
+// Comprehensive collection of modern slang, abbreviations, and emoji meanings
+
+const slangDatabase = {
+    // Popular Gen Z/Millennial Slang
+    "goat": {
+        meaning: "Greatest Of All Time - Used to describe someone who is the best at what they do",
+        context: "Often used in sports, music, or any field where someone excels",
+        example: "Tom Brady is the GOAT of football",
+        response: "You could say 'I agree, they really are talented!' or 'They've certainly earned that title!'"
+    },
+    "cap": {
+        meaning: "A lie or false statement. 'No cap' means 'no lie' or 'I'm being honest'",
+        context: "Used to call out dishonesty or to emphasize truthfulness",
+        example: "That story sounds like cap / No cap, this is the best pizza ever",
+        response: "You could say 'Are you being serious?' or 'I believe you!'"
+    },
+    "bet": {
+        meaning: "Okay, sure, or it's a deal. Used to show agreement",
+        context: "A casual way to confirm plans or agree with someone",
+        example: "Want to get lunch? - Bet!",
+        response: "You could reply with 'Great!' or 'Sounds good!'"
+    },
+    "slay": {
+        meaning: "To do something really well or look amazing",
+        context: "Often used to compliment someone's appearance or achievement",
+        example: "You slayed that presentation!",
+        response: "You could say 'Thank you!' or 'You did great too!'"
+    },
+    "bussin": {
+        meaning: "Really good, usually referring to food",
+        context: "Used when something tastes amazing",
+        example: "This pasta is bussin!",
+        response: "You could say 'I'm glad you like it!' or 'It really is delicious!'"
+    },
+    "sus": {
+        meaning: "Suspicious or questionable",
+        context: "When something seems off or not quite right",
+        example: "That excuse sounds pretty sus",
+        response: "You could say 'What do you mean?' or 'I can explain...'"
+    },
+    "fr": {
+        meaning: "For real - used for emphasis or to express agreement",
+        context: "Similar to 'seriously' or 'truly'",
+        example: "That movie was scary fr fr",
+        response: "You could say 'I totally agree!' or 'Really?'"
+    },
+    "fam": {
+        meaning: "Friend or close group of friends, like family",
+        context: "Term of endearment for friends",
+        example: "Thanks for helping me out, fam",
+        response: "You could say 'Anytime!' or 'That's what friends are for!'"
+    },
+    "vibe": {
+        meaning: "A feeling, atmosphere, or mood",
+        context: "Describes the overall feeling of a situation",
+        example: "This place has a good vibe",
+        response: "You could say 'I feel it too!' or 'It's really nice here!'"
+    },
+    "lowkey": {
+        meaning: "Somewhat, slightly, or secretly",
+        context: "Used to downplay or subtly express something",
+        example: "I'm lowkey excited about the trip",
+        response: "You could say 'Me too!' or 'Why only a little?'"
+    },
+    "highkey": {
+        meaning: "Very, obviously, or openly",
+        context: "The opposite of lowkey - being obvious about something",
+        example: "I'm highkey stressed about this test",
+        response: "You could say 'I understand' or 'How can I help?'"
+    },
+    "lit": {
+        meaning: "Exciting, fun, or excellent",
+        context: "Describes something that's really enjoyable",
+        example: "The party was lit!",
+        response: "You could say 'Sounds like fun!' or 'I'm glad you enjoyed it!'"
+    },
+    "salty": {
+        meaning: "Bitter, upset, or annoyed about something",
+        context: "When someone is holding a grudge or being petty",
+        example: "He's still salty about losing the game",
+        response: "You could say 'They'll get over it' or 'Give them time'"
+    },
+    "tea": {
+        meaning: "Gossip or interesting news",
+        context: "Sharing or asking for juicy information",
+        example: "Spill the tea! What happened?",
+        response: "You could say 'Well, I heard that...' or 'I don't gossip'"
+    },
+    "stan": {
+        meaning: "To be a huge fan of someone or something",
+        context: "Showing strong support or admiration",
+        example: "I stan this new artist",
+        response: "You could say 'What do you like about them?' or 'I'll check them out!'"
+    },
+    "flex": {
+        meaning: "To show off or boast",
+        context: "Displaying wealth, achievements, or possessions",
+        example: "Stop flexing your new car",
+        response: "You could say 'Congratulations on your purchase!' or 'Very nice!'"
+    },
+    "mood": {
+        meaning: "Relatable feeling or situation",
+        context: "When something perfectly captures how you feel",
+        example: "Eating ice cream at 2am - mood",
+        response: "You could say 'I've been there!' or 'We all have those moments'"
+    },
+    "periodt": {
+        meaning: "End of discussion, final statement",
+        context: "Emphasizing that what was said is final and true",
+        example: "She's the best singer, periodt",
+        response: "You could say 'I respect your opinion' or 'You feel strongly about this!'"
+    },
+    "slaps": {
+        meaning: "Something that's really good, especially music",
+        context: "When a song or food is exceptionally good",
+        example: "This song slaps!",
+        response: "You could say 'It's really good!' or 'I like it too!'"
+    },
+    "dead": {
+        meaning: "Finding something extremely funny",
+        context: "When something is so funny you can't handle it",
+        example: "I'm dead 💀 that was hilarious",
+        response: "You could say 'I'm glad I could make you laugh!' or 'It was pretty funny!'"
+    },
+
+    // Common Abbreviations
+    "tbh": {
+        meaning: "To Be Honest",
+        context: "Prefacing an honest opinion",
+        example: "TBH, I didn't like the movie",
+        response: "You could say 'I appreciate your honesty' or 'That's fair'"
+    },
+    "smh": {
+        meaning: "Shaking My Head - expressing disappointment or disbelief",
+        context: "When something is disappointing or unbelievable",
+        example: "He forgot our anniversary smh",
+        response: "You could say 'That's disappointing' or 'I understand your frustration'"
+    },
+    "imo": {
+        meaning: "In My Opinion",
+        context: "Sharing a personal viewpoint",
+        example: "IMO, pizza is the best food",
+        response: "You could say 'I respect that' or 'What's your favorite kind?'"
+    },
+    "idk": {
+        meaning: "I Don't Know",
+        context: "Expressing uncertainty",
+        example: "IDK what to have for dinner",
+        response: "You could say 'Let me help you decide' or 'What are you in the mood for?'"
+    },
+    "nvm": {
+        meaning: "Never Mind",
+        context: "Dismissing something previously said",
+        example: "Can you help... nvm I figured it out",
+        response: "You could say 'Glad you solved it!' or 'Let me know if you need help later'"
+    },
+    "ty": {
+        meaning: "Thank You",
+        context: "Quick way to express gratitude",
+        example: "TY for the help!",
+        response: "You could say 'You're welcome!' or 'Happy to help!'"
+    },
+    "np": {
+        meaning: "No Problem",
+        context: "Casual response to thanks",
+        example: "Thanks! - NP!",
+        response: "You could say 'Anytime!' or smile"
+    },
+
+    // Internet/Gaming Terms
+    "gg": {
+        meaning: "Good Game - showing sportsmanship",
+        context: "Said after playing a game, win or lose",
+        example: "GG everyone!",
+        response: "You could say 'Good game to you too!' or 'Well played!'"
+    },
+    "noob": {
+        meaning: "Newbie or beginner",
+        context: "Someone new to a game or activity",
+        example: "I'm such a noob at this game",
+        response: "You could say 'Everyone starts somewhere!' or 'You'll improve with practice!'"
+    },
+    "irl": {
+        meaning: "In Real Life",
+        context: "Referring to offline, physical world",
+        example: "We should meet IRL sometime",
+        response: "You could say 'That would be nice!' or 'I'd enjoy that!'"
+    },
+    "afk": {
+        meaning: "Away From Keyboard",
+        context: "Temporarily stepping away from computer/phone",
+        example: "BRB, going AFK for lunch",
+        response: "You could say 'Enjoy your lunch!' or 'See you later!'"
+    },
+
+    // Emoji Translations
+    "💀": {
+        meaning: "I'm dead/dying of laughter",
+        context: "Something is extremely funny",
+        example: "That joke 💀",
+        response: "You could say 'Glad you found it funny!' or laugh along"
+    },
+    "🔥": {
+        meaning: "Hot, awesome, or impressive",
+        context: "Something is really good or attractive",
+        example: "Your outfit is 🔥",
+        response: "You could say 'Thank you!' or 'I appreciate that!'"
+    },
+    "💯": {
+        meaning: "100%, completely agree, or perfect",
+        context: "Total agreement or something being perfect",
+        example: "That's the truth 💯",
+        response: "You could say 'Absolutely!' or 'I totally agree!'"
+    },
+    "👀": {
+        meaning: "Looking, watching, or interested",
+        context: "Showing interest or suspicion",
+        example: "New phone? 👀",
+        response: "You could say 'Yes, just got it!' or 'You noticed!'"
+    },
+    "🤡": {
+        meaning: "Clown, foolish, or embarrassing",
+        context: "Someone acting silly or foolish",
+        example: "I'm a 🤡 for believing that",
+        response: "You could say 'Don't be hard on yourself' or 'We all make mistakes'"
+    },
+    "✨": {
+        meaning: "Sparkles - emphasis, sarcasm, or something special",
+        context: "Adding emphasis or making something sound fancy",
+        example: "Just living my best life ✨",
+        response: "You could say 'That's wonderful!' or 'Good for you!'"
+    },
+    "😭": {
+        meaning: "Crying from laughter or extreme emotion",
+        context: "Not always sad - often means something is very funny",
+        example: "Stop, I can't 😭",
+        response: "You could say 'It is pretty funny!' or check if they're okay"
+    },
+    "🙃": {
+        meaning: "Sarcasm, passive-aggressive, or things are not okay",
+        context: "When someone is frustrated but trying to stay positive",
+        example: "Everything's fine 🙃",
+        response: "You could say 'Are you sure you're okay?' or 'Want to talk about it?'"
+    }
+};
+
+// Helper function to find and translate terms
+function translateTerm(input) {
+    const lowercaseInput = input.toLowerCase();
+    
+    // Check exact matches first
+    if (slangDatabase[lowercaseInput]) {
+        return slangDatabase[lowercaseInput];
+    }
+    
+    // Check if input contains known terms
+    for (const [term, data] of Object.entries(slangDatabase)) {
+        if (lowercaseInput.includes(term)) {
+            return data;
+        }
+    }
+    
+    return null;
+}
+
+// Export for use in main app
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { slangDatabase, translateTerm };
+}
+
+// Make functions available globally in browser
+if (typeof window !== 'undefined') {
+    window.slangDatabase = slangDatabase;
+    window.translateTerm = translateTerm;
+}
