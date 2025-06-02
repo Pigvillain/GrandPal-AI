@@ -498,44 +498,7 @@ main {
     font-size: 0.9rem;
 }
 
-/* Ad Banners */
-.ad-banner {
-    background: var(--bg-light);
-    text-align: center;
-    overflow: hidden;
-}
-
-.ad-banner .ad-placeholder {
-    min-height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: var(--text-light);
-    font-size: 0.8rem;
-    padding: 1rem;
-}
-
-.top-banner {
-    position: sticky;
-    top: 80px;
-    z-index: 90;
-    box-shadow: var(--shadow);
-}
-
-.bottom-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 95;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Adjust main content for sticky banners */
-main {
-    padding-bottom: 120px; /* Space for bottom banner */
-}
+/* main content adjustment removed since no more banner ads */
 
 /* Footer */
 footer {
@@ -544,7 +507,7 @@ footer {
     text-align: center;
     padding: 2rem;
     margin-top: 4rem;
-    margin-bottom: 90px; /* Space for bottom banner */
+    /* No bottom margin needed without banner ads */
 }
 
 
@@ -556,33 +519,180 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    
     .header-content {
         padding: 1rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .logo {
+        flex: 1;
     }
     
     .logo h1 {
+        font-size: 1.25rem;
+    }
+    
+    .logo-icon {
         font-size: 1.5rem;
     }
     
+    .header-right {
+        gap: 1rem;
+    }
+    
+    .usage-counter {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .premium-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    main {
+        padding: 1rem;
+        padding-bottom: 80px;
+    }
+    
     .hero h2 {
-        font-size: 2rem;
+        font-size: 1.75rem;
+        line-height: 1.3;
+    }
+    
+    .hero p {
+        font-size: 1rem;
     }
     
     .translator-section {
-        padding: 1.5rem;
+        padding: 1.25rem;
+        margin-bottom: 2rem;
+    }
+    
+    .input-area h3 {
+        font-size: 1.25rem;
+    }
+    
+    #user-input {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+    
+    .input-controls {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .primary-btn {
+        padding: 1rem;
+        font-size: 1.1rem;
     }
     
     .additional-info {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .context-box, .example-box {
+        padding: 1rem;
     }
     
     .terms-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .term-card {
+        padding: 1rem;
+    }
+    
+    .term {
+        font-size: 1rem;
     }
     
     .features-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .feature-card {
+        padding: 1.5rem;
+    }
+    
+    .feature-icon {
+        font-size: 2.5rem;
+    }
+    
+    footer {
+        margin-bottom: 0;
+        padding: 1.5rem 1rem;
+    }
+    
+    /* Modal adjustments */
+    .modal-content {
+        width: 95%;
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+    }
+    
+    .toast-container {
+        top: 0.5rem;
+        right: 0.5rem;
+        left: 0.5rem;
+    }
+    
+    .toast {
+        min-width: auto;
+        width: 100%;
+        font-size: 0.9rem;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .header-content {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .logo {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .header-right {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+    
+    .translator-section {
+        padding: 1rem;
+    }
+    
+    .terms-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    #user-input {
+        min-height: 100px;
+    }
+    
+    /* Prevent horizontal scroll */
+    body {
+        overflow-x: hidden;
+    }
+    
+    .modal-content {
+        padding: 1.5rem 1rem;
     }
 }
 
