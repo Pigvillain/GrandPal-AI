@@ -80,8 +80,6 @@
                 <div class="usage-counter">
                     <span id="daily-uses">5</span>/5 Free Today
                 </div>
-
-                <button class="premium-btn">Go Premium</button>
             </div>
         </div>
     </header>
@@ -196,37 +194,20 @@
 
     <!-- Ad space removed - using auto ads instead -->
 
-    <!-- Premium Modal -->
-    <div id="premium-modal" class="modal hidden">
-        <div class="modal-content premium-content">
-            <span class="close">&times;</span>
-            <h2>GrandPal AI Premium</h2>
-            <div class="price-tag">
-                <span class="price">$2.99</span>
-                <span class="period">/month</span>
-            </div>
-            <ul class="premium-features">
-                <li>✅ Unlimited translations</li>
-                <li>✅ No advertisements</li>
-                <li>✅ Faster translation speed</li>
-            </ul>
-            <button class="subscribe-btn">Start Free Trial</button>
-            <p class="trial-info">7-day free trial • Cancel anytime</p>
-        </div>
-    </div>
+    <!-- Premium modal removed - ad-supported only -->
 
     <!-- Out of Uses Modal -->
     <div id="limit-modal" class="modal hidden">
         <div class="modal-content">
             <h3>You've used all your free translations today!</h3>
-            <p>Get more translations by:</p>
+            <p>Watch a short ad to continue using GrandPal AI</p>
             <div class="options">
-                <button id="premium-option" class="option-btn premium">
-                    ⭐ Go Premium
-                    <span class="option-detail">Unlimited translations for $2.99/month</span>
+                <button id="watch-ad-btn" class="option-btn">
+                    📺 Watch Ad & Continue
+                    <span class="option-detail">Get 1 more translation</span>
                 </button>
             </div>
-            <p class="reset-info">Free uses reset at midnight EST</p>
+            <p class="reset-info">Free uses reset at midnight • Or watch an ad to continue now</p>
         </div>
     </div>
 

@@ -55,7 +55,6 @@ const appState = {
     dailyUses: parseInt(localStorage.getItem('dailyUses') || '3'),
     lastResetDate: localStorage.getItem('lastResetDate') || new Date().toDateString(),
     totalUses: parseInt(localStorage.getItem('totalUses') || '0'),
-    isPremium: localStorage.getItem('isPremium') === 'true',
     isTranslating: false,
     translationCount: parseInt(localStorage.getItem('translationCount') || '0')
 };
@@ -190,15 +189,19 @@ function initializeEventListeners() {
         });
     });
     
-    // Premium button
-    document.querySelector('.premium-btn').addEventListener('click', showPremiumModal);
+    // Premium button removed - ad-supported only
     
-    // Modal controls
-    const premiumOption = document.getElementById('premium-option');
-    if (premiumOption) {
-        premiumOption.addEventListener('click', () => {
+    // Watch ad button
+    const watchAdBtn = document.getElementById('watch-ad-btn');
+    if (watchAdBtn) {
+        watchAdBtn.addEventListener('click', async () => {
             hideModal('limit-modal');
-            showPremiumModal();
+            await showInterstitialAd();
+            // Give 1 more use after watching ad
+            appState.dailyUses = 1;
+            localStorage.setItem('dailyUses', appState.dailyUses);
+            updateUsageDisplay();
+            toastManager.show('Thanks for watching! You earned 1 more translation.', 'success');
         });
     }
     
@@ -210,8 +213,7 @@ function initializeEventListeners() {
         });
     });
     
-    // Premium subscribe
-    document.querySelector('.subscribe-btn').addEventListener('click', handleSubscribe);
+    // Premium subscribe removed - ad-supported only
 }
 
 // Main translation handler
@@ -227,7 +229,7 @@ async function handleTranslation() {
     }
     
     // Check usage limit
-    if (!appState.isPremium && appState.dailyUses <= 0) {
+    if (appState.dailyUses <= 0) {
         showModal('limit-modal');
         return;
     }
@@ -240,8 +242,8 @@ async function handleTranslation() {
         appState.translationCount++;
         localStorage.setItem('translationCount', appState.translationCount);
         
-        // Show ad every 3 translations for free users
-        if (!appState.isPremium && appState.translationCount % 3 === 0) {
+        // Show ad every 3 translations
+        if (appState.translationCount % 3 === 0) {
             await showInterstitialAd();
         }
         
@@ -249,13 +251,11 @@ async function handleTranslation() {
         await translateWithGemini(input);
         
         // Update usage
-        if (!appState.isPremium) {
-            appState.dailyUses--;
-            appState.totalUses++;
-            localStorage.setItem('dailyUses', appState.dailyUses);
-            localStorage.setItem('totalUses', appState.totalUses);
-            updateUsageDisplay();
-        }
+        appState.dailyUses--;
+        appState.totalUses++;
+        localStorage.setItem('dailyUses', appState.dailyUses);
+        localStorage.setItem('totalUses', appState.totalUses);
+        updateUsageDisplay();
     } catch (error) {
         console.error('Translation error:', error);
         toastManager.show('Sorry, something went wrong. Please try again.', 'error');
@@ -465,14 +465,7 @@ async function handlePaste() {
 
 // Watch ad function removed - using banner ads instead
 
-// Premium subscription handler
-function handleSubscribe() {
-    toastManager.show('Premium subscription would be handled here. For this demo, premium features are simulated.', 'info');
-    appState.isPremium = true;
-    localStorage.setItem('isPremium', 'true');
-    hideModal('premium-modal');
-    setTimeout(() => location.reload(), 1500);
-}
+// Premium removed - ad-supported only
 
 // Interstitial Ad function
 async function showInterstitialAd() {
@@ -487,12 +480,18 @@ async function showInterstitialAd() {
                 </div>
                 <div class="interstitial-ad-space">
                     <div class="ad-placeholder">
-                        <h3>Your Ad Here</h3>
-                        <p>This is where a real ad would appear</p>
-                        <div class="fake-ad-content">
-                            <div class="fake-ad-image"></div>
-                            <p class="fake-ad-text">Premium Experience - No Ads!</p>
-                            <button class="fake-ad-button">Learn More</button>
+                        <ins class="adsbygoogle"
+                             style="display:block; width:336px; height:280px; margin: 0 auto;"
+                             data-ad-client="ca-pub-3028480983747530"
+                             data-ad-slot="3106897068"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                        <div class="ad-fallback" style="display:none;">
+                            <div class="fake-ad-content">
+                                <p class="fake-ad-text">🎆 Supporting GrandPal AI</p>
+                                <p>Thank you for watching this ad!</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -522,12 +521,13 @@ async function showInterstitialAd() {
             resolve();
         });
         
-        // Handle clicking on fake ad
-        adModal.querySelector('.fake-ad-button').addEventListener('click', () => {
-            showPremiumModal();
-            adModal.remove();
-            resolve();
-        });
+        // Check if ad loaded, otherwise show fallback
+        setTimeout(() => {
+            const adContainer = adModal.querySelector('.adsbygoogle');
+            if (!adContainer || adContainer.innerHTML.trim() === '') {
+                adModal.querySelector('.ad-fallback').style.display = 'block';
+            }
+        }, 1000);
     });
 }
 
@@ -540,10 +540,7 @@ function hideModal(modalId) {
     document.getElementById(modalId).classList.add('hidden');
 }
 
-// Premium modal
-function showPremiumModal() {
-    showModal('premium-modal');
-}
+// Premium removed - ad-supported only
 
 // Utility functions
 function simulateDelay(ms) {
